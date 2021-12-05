@@ -65,7 +65,7 @@ import { LyTypographyModule } from '@alyle/ui/typography';
     LyTypographyModule,
     LyIconModule,
   ],
-  bootstrap: [DrawerDemo01Component],
+  //bootstrap: [appComponent],
   providers: [
     [LyTheme2],
     [StyleRenderer],
@@ -87,6 +87,6 @@ import { LyTypographyModule } from '@alyle/ui/typography';
     // Gestures
     { provide: HAMMER_GESTURE_CONFIG, useClass: LyHammerGestureConfig },
   ],
-  declarations: [DrawerDemo01Component],
+  declarations: [appComponent],
 })
-export class DrawerDemo01AppModule {}
+export class appModule {}

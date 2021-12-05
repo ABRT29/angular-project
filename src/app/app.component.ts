@@ -16,7 +16,7 @@ const styles = {
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DrawerDemo01Component {
+export class appComponent {
   classes = this._theme.addStyleSheet(styles);
   mode = 'side';
   hasBackdrop: boolean | null = null;
