@@ -13,7 +13,7 @@ const styles = {
 
 @Component({
   selector: 'root-app',
-  templateUrl: './drawer-demo-01.component.html',
+  templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerDemo01Component {
