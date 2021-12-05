@@ -1,17 +1,92 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HAMMER_GESTURE_CONFIG, HammerModule } from '@angular/platform-browser';
-import { LyHammerGestureConfig } from '@alyle/ui';
+/** Angular */
+import {
+  BrowserModule,
+  HAMMER_GESTURE_CONFIG,
+  HammerModule,
+} from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from './app.component';
+/** Alyle UI */
+import {
+  LyTheme2,
+  StyleRenderer,
+  LY_THEME,
+  LY_THEME_NAME,
+  LY_THEME_GLOBAL_VARIABLES,
+  LyHammerGestureConfig,
+} from '@alyle/ui';
+import { MinimaLight, MinimaDark } from '@alyle/ui/themes/minima';
+
+import { color } from '@alyle/ui/color';
+
+export class GlobalVariables {
+  testVal = color(0x00bcd4);
+  Quepal = {
+    default: `linear-gradient(135deg,#11998e 0%,#38ef7d 100%)`,
+    contrast: color(0xffffff),
+    shadow: color(0x11998e),
+  };
+  SublimeLight = {
+    default: `linear-gradient(135deg,#FC5C7D 0%,#6A82FB 100%)`,
+    contrast: color(0xffffff),
+    shadow: color(0xb36fbc),
+  };
+  Amber = {
+    default: color(0xffc107),
+    contrast: color(0, 0, 0, 0.87),
+  };
+}
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DrawerDemo01Component } from './drawer-demo-01.component';
+import { LyCommonModule } from '@alyle/ui';
+import { LyDrawerModule } from '@alyle/ui/drawer';
+import { LyButtonModule } from '@alyle/ui/button';
+import { LyRadioModule } from '@alyle/ui/radio';
+import { LyIconModule } from '@alyle/ui/icon';
+import { LyToolbarModule } from '@alyle/ui/toolbar';
+import { LyTypographyModule } from '@alyle/ui/typography';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, HammerModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    HammerModule,
+    CommonModule,
+    FormsModule,
+    LyCommonModule,
+    LyDrawerModule,
+    LyToolbarModule,
+    LyButtonModule,
+    LyRadioModule,
+    LyTypographyModule,
+    LyIconModule,
+  ],
+  bootstrap: [DrawerDemo01Component],
   providers: [
+    [LyTheme2],
+    [StyleRenderer],
+    { provide: LY_THEME_NAME, useValue: 'minima-light' },
+    {
+      provide: LY_THEME,
+      useClass: MinimaLight,
+      multi: true,
+    },
+    {
+      provide: LY_THEME,
+      useClass: MinimaDark,
+      multi: true,
+    },
+    {
+      provide: LY_THEME_GLOBAL_VARIABLES,
+      useClass: GlobalVariables,
+    }, // global variables
+    // Gestures
     { provide: HAMMER_GESTURE_CONFIG, useClass: LyHammerGestureConfig },
   ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
+  declarations: [DrawerDemo01Component],
 })
-export class AppModule {}
+export class DrawerDemo01AppModule {}
